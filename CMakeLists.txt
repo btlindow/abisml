@@ -6,5 +6,3 @@ file(GLOB SOURCES src/*.c)
 
 add_executable(abisml ${SOURCES})
 include_directories(inc)
-
-target_link_libraries(abisml)
