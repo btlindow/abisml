@@ -26,9 +26,14 @@ int main(int argc, char **argv)
 
 ABISML_ROUTINE(start)
 {
-    printf("in start\n");
+    static int count = 10;
+    printf("in start, count = %d\n", count);
+    if (--count == 0)
+    {
+        count = 10;
+        ABISML_TRANSITION(machine, middle);
+    }
     sleep(1);
-    ABISML_TRANSITION(machine, middle);
 }
 
 ABISML_ROUTINE(middle)

@@ -33,7 +33,7 @@ typedef struct abisml_machine
 
 void abisml_machine_run(abisml_machine *m)
 {
-    while(1)
+    while (m->state != NULL)
     {
         m->state->routine();
     }
@@ -41,9 +41,10 @@ void abisml_machine_run(abisml_machine *m)
 
 void abisml_machine_transition(abisml_machine *m, abisml_state *s)
 {
-    for(int i = 0; i < m->num_edges; i++)
+    abisml_edge *edge = m->edges;
+    for (int i = 0; i < m->num_edges; i++, edge++)
     {
-        if(m->edges[i].from == m->state && m->edges[i].to == s)
+        if (edge->from == m->state && edge->to == s)
         {
             m->state = s;
             return;
